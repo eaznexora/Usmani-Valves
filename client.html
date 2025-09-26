@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clients - Usmani Valves</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+
+    /* TOP BAR */
+.top-bar {
+  background: #0060aa;
+  color: #fff;
+  padding: 8px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  gap: 10px;
+}
+.top-bar .left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.top-bar .left a,
+.top-bar .left i,
+.top-bar .left span {
+  color: #fff;
+}
+.top-bar .left a { text-decoration: none; }
+.top-bar .left i { margin-right: 6px; }
+
+.top-bar .right a {
+  margin-left: 14px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.social-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.top-bar .right i:hover {
+  transform: scale(1.2);
+  color: #fdb913;
+}
+
+/* LOGO ROW */
+.logo-row {
+  background: #fff;
+  padding: 12px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-with-text {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-content: center;
+}
+.logo-with-text img:first-child {
+  height: 80px;
+  padding-left: 200px;
+}
+.logo-with-text img:last-child {
+  height: 80px;
+  padding-left: 100px;
+}
+
+/* NAVBAR */
+nav {
+  background: #fdb913;
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  gap: 10px;
+}
+.nav-center { flex: 1; display: flex; justify-content: center; }
+nav ul { list-style: none; display: flex; margin: 0; padding: 0; gap: 18px; align-items: center; }
+nav ul li { position: relative; }
+nav ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #4d3300;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #0060aa;
+  transition: width 0.3s ease;
+}
+nav ul li a:hover { color: #0060aa; }
+nav ul li a:hover::after,
+nav ul li a.active::after { width: 100%; }
+nav ul li a.active { color: #0060aa; }
+
+.nav-buttons { display: flex; gap: 8px; align-items: center; }
+/* Make <a> look like buttons in the navbar */
+.nav-buttons a {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Button color schemes */
+.btn-contact { background: #fff; color: #0060aa; border: 2px solid #0060aa; }
+.btn-contact:hover { background: #0060aa; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+.btn-quote { background: #0060aa; color: #fff; }
+.btn-quote:hover { background: #004b82; transform: scale(1.05); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+.mobile-hamburger { display: none; font-size: 22px; cursor: pointer; color: #4d3300; background: transparent; border: none; padding: 6px; }
+.mobile-menu {
+  display: none;
+  width: 100%;
+  background: #fdb913;
+  flex-direction: column;
+  padding: 10px 16px;
+  box-sizing: border-box;
+  gap: 8px;
+}
+.mobile-menu a { color: #4d3300; text-decoration: none; padding: 8px 0; font-weight: bold; border-bottom: 1px solid rgba(0,0,0,0.06); }
+
+
+    .mobile-hamburger {
+      display: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #4d3300;
+      background: transparent;
+      border: none;
+      padding: 6px;
+    }
+    .mobile-menu {
+      display: none;
+      width: 100%;
+      background: #fdb913;
+      flex-direction: column;
+      padding: 10px 16px;
+      box-sizing: border-box;
+      gap: 8px;
+    }
+    .mobile-menu a {
+      color: #4d3300;
+      text-decoration: none;
+      padding: 8px 0;
+      font-weight: bold;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes shine {
+      0%   { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* CLIENTS SECTION */
+    .clients-section {
+      padding: 25px 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f9f9f9;
+    }
+    .clients-header {
+      text-align: center;
+      margin-bottom: 25px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .clients-header h1 {
+      color: #0060aa;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .clients-header p {
+      color: #666;
+      font-size: 16px;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .trust-message {
+      text-align: center;
+      margin: 30px 0;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+    .trust-message h3 {
+      color: #0060aa;
+      font-size: 24px;
+      margin-bottom: 15px;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+    .trust-message p {
+      color: #666;
+      font-size: 16px;
+      margin: 0 auto;
+      line-height: 1.7;
+      max-width: 800px;
+      font-weight: 300;
+    }
+
+    .clients-container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      padding: 30px;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+    .client-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: scaleIn 0.6s ease-out both;
+    }
+    .client-card:nth-child(1) { animation-delay: 0.6s; }
+    .client-card:nth-child(2) { animation-delay: 0.7s; }
+    .client-card:nth-child(3) { animation-delay: 0.8s; }
+    .client-card:nth-child(4) { animation-delay: 0.9s; }
+    .client-card:nth-child(5) { animation-delay: 1.0s; }
+    .client-card:nth-child(6) { animation-delay: 1.1s; }
+    .client-card:nth-child(7) { animation-delay: 1.2s; }
+    .client-card:nth-child(8) { animation-delay: 1.3s; }
+
+    .client-logo {
+      width: 120px;
+      height: 80px;
+      background: #e9ecef;
+      border: 2px dashed #adb5bd;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .client-logo.has-image {
+      border: none;
+      background: none;
+    }
+    .client-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+      display: block;
+    }
+    .client-name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      text-align: center;
+      margin: 0;
+      transition: color 0.3s;
+    }
+    .client-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(0, 96, 170, 0.2);
+      background: white;
+    }
+    .client-card:hover .client-name {
+      color: #0060aa;
+    }
+
+    /* Shine effect on actual images */
+    .client-logo.has-image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -200%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.4) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: skewX(-20deg);
+    }
+    .client-logo.has-image:hover::before {
+      animation: shine 1s forwards;
+    }
+
+    /* Fallback initials */
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 80px;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #0060aa, #fdb913);
+      border-radius: 8px;
+      letter-spacing: 2px;
+    }
+    .client-logo.fallback-active {
+      border: 2px dashed #fdb913;
+      background: #adb5bd;
+    }
+
+    footer { background:#0060aa; color:#fff; margin-top:60px; }
+.footer-top { display:flex; justify-content:space-between; flex-wrap:wrap; padding:40px 60px; }
+.footer-col { flex:1; min-width:260px; margin:10px 20px; }
+.footer-logo { height:60px; margin-bottom:10px; }
+.footer-col h4 { font-size:16px; margin:15px 0 10px; font-weight:bold; }
+.footer-col p, .footer-col a, .products-grid span { font-size:14px; line-height:1.6; color:#fff; text-decoration:none; }
+.divider { border-top:1px solid rgba(255,255,255,0.4); margin:15px 0; }
+.link-grid { display:grid; grid-template-columns: repeat(2, auto); gap:5px 40px; }
+.subscribe-box { display:flex; margin:15px 0; border-radius:4px; overflow:hidden; max-width:320px; }
+.subscribe-box input { flex:1; padding:12px; border:none; font-size:14px; color:#333; }
+.subscribe-box button { background:#fdb913; border:none; padding:0 20px; cursor:pointer; font-size:16px; color:#000; font-weight:bold; transition:all 0.3s; }
+.subscribe-box button:hover { background:#e5a900; }
+.social-icons { display:flex; gap:12px; margin-top:10px; }
+.social-icons a { display:flex; align-items:center; justify-content:center; width:38px; height:38px; background:#fff; color:#0060aa; border-radius:6px; font-size:18px; transition:transform 0.3s; }
+.social-icons a:hover { transform:scale(1.15); }
+.cert-logos img { height:70px; margin:10px 15px 0 0; }
+.footer-bottom { background:#005299; text-align:center; padding:12px; font-size:13px; }
+.footer-bottom a { color:#fff; margin:0 8px; text-decoration:none; }
+.footer-bottom a:hover { text-decoration:underline; }
+.products-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px 20px; margin-top:10px; }
+.products-grid div, .products-grid span { font-size:14px; line-height:1.6; color:#fff; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-top { flex-direction: column; align-items: center; padding: 30px 20px; }
+  .footer-col { text-align: center; margin: 12px 0; max-width: 520px; min-width: auto; width: 100%; }
+}
+
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .clients-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .client-card { padding: 20px; min-height: 160px; }
+    }
+    @media (max-width: 768px) {
+      .mobile-hamburger { display: inline-block; }
+      .nav-center { display: none; }
+      .clients-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+      .clients-header h1 { font-size: 26px; }
+    }
+    @media (max-width: 480px) {
+      .clients-grid { grid-template-columns: 1fr; gap: 12px; }
+      .clients-section { padding: 15px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER (Top bar + Logo + Navbar) -->
+<div class="top-bar">
+  <div class="left">
+    <a href="mailto:info@usmanivalves.com"><i class="fas fa-envelope"></i></a>
+    <span>info@usmanivalves.com</span>
+    <a href="tel:+911112223330"><i class="fas fa-phone"></i></a>
+    <span>+91 111 222 3330 | +91 999 888 7770</span>
+  </div>
+  <div class="right">
+    <a href="#" aria-label="Instagram">
+      <img src="top-bar-insta.png" alt="Instagram" class="social-icon" />
+    </a>
+    <a href="#" aria-label="WhatsApp">
+      <img src="top-bar-whatsapp.png" alt="WhatsApp" class="social-icon" />
+    </a>
+    <a href="#" aria-label="Facebook">
+      <img src="top-bar-facebook.png" alt="Facebook" class="social-icon" />
+    </a>
+  </div>
+</div>
+
+<div class="logo-row">
+  <div class="logo-with-text">
+    <img src="usmani-text-header-name-and-logo.jpg" alt="UTVC Logo" />
+    <img src="usmani-header-certificates-logo.jpg" alt="UTVC Logo" />
+  </div>
+</div>
+
+<nav>
+  <div class="nav-center">
+    <ul id="desktopNav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="product.html">Products</a></li>
+      <li><a href="#">Valve Gallery</a></li>
+      <li><a href="#">Quality Policy</a></li>
+      <li><a href="#">Catalogue</a></li>
+      <li><a href="client.html" class="active">Clients</a></li>
+    </ul>
+  </div>
+  <div class="nav-buttons">
+    <a href="contact.html" class="btn-contact">Contact Us</a>
+    <a href="quote.html" class="btn-quote">Get a Quote</a>
+  </div>
+  <button class="mobile-hamburger" id="mobileHamburger"><i class="fas fa-bars"></i></button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="products.html">Products</a>
+    <a href="#">Valve Gallery</a>
+    <a href="#">Quality Policy</a>
+    <a href="#">Catalogue</a>
+    <a href="#">Clients</a>
+  </div>
+</nav>
+
+
+  <!-- CLIENTS SECTION -->
+  <section class="clients-section">
+    <div class="clients-header">
+      <h1>Clients Who Trust Our Valves</h1>
+      <p>From petrochemicals to power plants, top companies choose Usmani Valves for reliability and performance.</p>
+    </div>
+    <div class="trust-message">
+      <h3>Trusted by Industry Leaders</h3>
+      <p>Our commitment to quality and reliability has earned us the trust of leading companies across diverse industries including petrochemicals, power generation, oil & gas, and manufacturing sectors.</p>
+    </div>
+    <div class="clients-container">
+      <div class="clients-grid">
+
+        <div class="client-card">
+          <div class="client-logo has-image" data-initials="IO">
+            <img src="http://usmanivalves.com/images/clients/3.jpg" alt="IndianOil Logo" onerror="logoFallback(this)">
+          </div>
+          <h3 class="client-name">IndianOil Corporation</h3>
+        </div>
+
+        <div class="client-card">
+          <div class="client-logo has-image" data-initials="HP">
+            <img src="http://usmanivalves.com/images/clients/2.jpg" alt="Hindustan Petroleum Logo" onerror="logoFallback(this)">
+          </div>
+          <h3 class="client-name">Hindustan Petroleum</h3>
+        </div>
+
+        <div class="client-card">
+          <div class="client-logo has-image" data-initials="AC">
+            <img src="http://usmanivalves.com/images/clients/4.jpg" alt="ACC Cement Logo" onerror="logoFallback(this)">
+          </div>
+          <h3 class="client-name">ACC Cement</h3>
+        </div>
+
+        <div class="client-card">
+          <div class="client-logo has-image" data-initials="SU">
+            <img src="http://usmanivalves.com/images/clients/7.jpg" alt="Sulzer Ltd Logo" onerror="logoFallback(this)">
+          </div>
+          <h3 class="client-name">Sulzer Ltd</h3>
+        </div>
+
+        <div class="client-card">
+          <div class="client-logo has-image" data-initials="RI">
+            <img src="http://usmanivalves.com/images/clients/19.jpg" alt="Reliance Industries Logo" onerror="logoFallback(this)">
+          </div>
+          <h3 class="client-name">Reliance Industries</h3>
+        </div>
+
+        <div class="client-card">
+          <div class="client-logo has-image" data-initials="TG">
+            <img src="http://usmanivalves.com/images/clients/9.jpg" alt="Tata Group Logo" onerror="logoFallback(this)">
+          </div>
+          <h3 class="client-name">Tata Group</h3>
+        </div>
+
+        <div class="client-card">
+          <div class="client-logo has-image" data-initials="BH">
+            <img src="http://usmanivalves.com/images/clients/17.jpg" alt="BHEL Logo" onerror="logoFallback(this)">
+          </div>
+          <h3 class="client-name">BHEL</h3>
+        </div>
+
+        <div class="client-card">
+          <div class="client-logo has-image" data-initials="LT">
+            <img src="http://usmanivalves.com/images/clients/12.jpg" alt="Larsen & Toubro Logo" onerror="logoFallback(this)">
+          </div>
+          <h3 class="client-name">Larsen & Toubro</h3>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+  <div class="footer-top">
+    <div class="footer-col company-info">
+      <img src="usmani-footer-text.jpg" alt="Usmani Logo" class="footer-logo" />
+      <div class="divider"></div>
+      <p>
+        Virani Business Centre, B Wing 301,<br />
+        Opp. Bharath Gear Company Above<br />
+        Dawat Banquet Hall and Abhyudaya<br />
+        Bank Kausa Mumbra, Thane - 400612,
+      </p>
+      <p><i class="fas fa-envelope"></i> info@usmanivalves.com</p>
+      <p><i class="fas fa-phone"></i> +91 111 222 3330</p>
+      <div class="cert-logos">
+        <!-- <img src="usmani-header-certificates-logo.jpg" alt="CE" /> -->
+      </div>
+    </div>
+
+    <div class="footer-col links">
+      <h4>Company Links</h4>
+      <div class="link-grid">
+        <a href="#">Home</a>
+        <a href="#">Clients</a>
+        <a href="#">About Us</a>
+        <a href="#">Blog</a>
+        <a href="#">Valve Gallery</a>
+        <a href="#">Catalogue</a>
+      </div>
+      <div class="divider"></div>
+      <h4>Products</h4>
+      <div class="products-grid">
+        <span>Ball Valve</span>
+        <span>Diaphragm Valve</span>
+        <span>Safety Valve</span>
+        <span>Check Valve</span>
+        <span>Butterfly Valve</span>
+        <span>Plug Valve</span>
+        <span>Control Valve</span>
+        <span>Globe Valve</span>
+        <span>Flush Valve</span>
+        <span>Disc Check Valve</span>
+        <span>Knife Gate</span>
+        <span>Basket Strainer Valve</span>
+        <span>Steam Trap</span>
+      </div>
+    </div>
+
+    <div class="footer-col subscribe">
+      <h4>Stay Connected</h4>
+      <p>
+        Subscribe for the latest valve news, product launches, and catalogues from
+        Usmani Tubes and Valves – trusted valve manufacturers in Mumbai, India.
+      </p>
+      <div class="subscribe-box">
+        <input type="email" placeholder="Enter Your Email Address" />
+        <button>→</button>
+      </div>
+      <div class="divider"></div>
+      <h4>Follow Usmani Tubes and Valves on</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Usmani Tubes And Valves Co. Pvt. Ltd. All Rights Reserved
+    <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Certificates</a>
+  </div>
+</footer>
+
+
+  <script>
+    // Mobile menu toggle
+    (function(){
+      const ham = document.getElementById('mobileHamburger');
+      const menu = document.getElementById('mobileMenu');
+      function check(){ ham.style.display = window.matchMedia('(max-width:768px)').matches ? 'inline-block' : 'none'; menu.style.display='none'; }
+      check(); window.addEventListener('resize',check);
+      ham.addEventListener('click', e=>{ e.stopPropagation(); menu.style.display = menu.style.display==='flex'?'none':'flex'; });
+      document.addEventListener('click', e=>{ if(!menu.contains(e.target)&&!ham.contains(e.target)) menu.style.display='none'; });
+    })();
+
+    // Scroll animations
+    const obs = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.style.animationPlayState = 'running'; }); },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+    document.addEventListener('DOMContentLoaded',()=> document.querySelectorAll('.client-card').forEach(c=> obs.observe(c)) );
+
+    // Fallback initials
+    function logoFallback(img) {
+      const div = img.parentElement;
+      const init = div.getAttribute('data-initials') || '?';
+      div.innerHTML = `<span class="logo-fallback">${init}</span>`;
+      div.classList.add('fallback-active');
+    }
+  </script>
+</body>
+</html>
